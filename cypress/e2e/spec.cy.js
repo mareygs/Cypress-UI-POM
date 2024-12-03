@@ -14,11 +14,6 @@ beforeEach(() => {
     signUpPage.typeUserNameInput('testmare' + date) // Quedaria testmare2024-12-02T17:59:35.822Z 
     signUpPage.typeEmailInput('testmare' + date +'@gmail.com')
     signUpPage.typePasswordInput('test1234')
-    //reemplazado para usar POM
-    /*     cy.get('[placeholder="Username"]').type('testmare' + date);
-    cy.get('[placeholder="Email"]').type('testmare' + date +'@gmail.com');
-    cy.get('[placeholder="Password"').type('test1234') */
-
     cy.contains('button', 'Sign up').click()
     //cy.url().should('include', '/tetsts')
     cy.contains('a',' testmare'+ date+ ' ')
@@ -26,14 +21,6 @@ beforeEach(() => {
   })
 
   it('Create new article', () => {
-
-/*     cy.contains('a', ' New Article ').click();
-    cy.get('[formcontrolname="title"]').type('Why the cats are great');
-    cy.get('[formcontrolname="description"]').type('Cats...');
-    cy.get('[formcontrolname="body"]').type('This is the body of the text');
-    cy.get('[placeholder="Enter tags"]').type('cats').type('{enter}'); */
-    //cy.loginToApp()
-
     createArticlePage.navigateToCreateArticlePage();
     createArticlePage.typeTitleInput('Why the cats are great');
     createArticlePage.typeDescriptionInput('Cats...')

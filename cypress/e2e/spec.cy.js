@@ -4,9 +4,11 @@ import createArticlePage from "../pages/createArticlePage";
 
 describe('template spec', () => {
 
-/* beforeEach(() => {
- cy.loginToApp()
-})  */
+beforeEach(() => {
+  cy.session("LoginSessionn", () => {
+    cy.loginToApp()
+  })
+}) 
 
   it.skip('Sign up with valid data', () => {
     let date = (new Date()).toISOString(); //ISOString le saca los espacios a la fecha
@@ -25,14 +27,14 @@ describe('template spec', () => {
 
   })
 
-  it.only('create new article', () => {
+  it('create new article', () => {
 
 /*     cy.contains('a', ' New Article ').click();
     cy.get('[formcontrolname="title"]').type('Why the cats are great');
     cy.get('[formcontrolname="description"]').type('Cats...');
     cy.get('[formcontrolname="body"]').type('This is the body of the text');
     cy.get('[placeholder="Enter tags"]').type('cats').type('{enter}'); */
-    cy.loginToApp()
+    //cy.loginToApp()
 
     createArticlePage.navigateToCreateArticlePage();
     createArticlePage.typeTitleInput('Why the cats are great');
@@ -43,11 +45,12 @@ describe('template spec', () => {
   })
 
   it('Edit article', () => {
-    //cy.contains('a','Why the cats are great').click()
-    cy.intercept('GET','https://conduit-api.bondaracademy.com/api/articles/**').as('getArticless');
-
+    cy.visit('/')
+    cy.contains('a','Why the cats are great').click()
+    
     homePage.selectArticle('Why the cats are great');
     cy.contains('a',' Edit Article ').click();
+    cy.intercept('GET','https://conduit-api.bondaracademy.com/api/articles/**').as('getArticles');
     //cy.wait(5000);
     
     cy.wait('@getArticles');
@@ -59,8 +62,8 @@ describe('template spec', () => {
 
   })
 
-  it.skip('delete article created recently', () => {
-    
+  it('delete article created recently', () => {
+    cy.visit('/')
     cy.contains('a','Why you should have a cat').click()
     cy.contains('button',' Delete Article ').click();
     cy.visit('/');

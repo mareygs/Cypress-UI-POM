@@ -24,14 +24,22 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add('loginToApp', () => {
+    cy.session('Login', () => {
+        cy.visit('/login')
+        cy.get('[placeholder="Email"]').type('marevatest@gmail.com')
+        cy.get('[placeholder="Password"]').type('lian2024')
+        cy.get('form').submit()
+        cy.url().should('eql', "https://conduit.bondaracademy.com/")
 
+    })
+    
     // solo coloco /login porque lee la url de BaseUrl definida en el archivo de configuracion
-    cy.visit('/login')
+/*     cy.visit('/login')
     cy.get('[placeholder="Email"]').type('marevatest@gmail.com')
     cy.get('[placeholder="Password"]').type('lian2024')
     cy.get('form').submit()
     cy.url().should('eql', "https://conduit.bondaracademy.com/")
-
+ */
 /*     const userCredentials = {
         user: {
             email: "marevatest@gmail.com", 

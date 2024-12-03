@@ -5,9 +5,7 @@ import createArticlePage from "../pages/createArticlePage";
 describe('Suit of tests', () => {
 
 beforeEach(() => {
-  cy.session("LoginSessionn", () => {
     cy.loginToApp()
-  })
 }) 
 
   it.skip('Sign up with valid data', () => {

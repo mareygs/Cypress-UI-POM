@@ -2,6 +2,11 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
+   /*  env: {
+      base_url: "https://conduit.bondaracademy.com",
+      username: "marevatest@gmail.com",
+      password: "lian2024"
+    }, */
 
     excludeSpecPattern: ['**/1-getting-started','**/2-advanced-examples'],
 
